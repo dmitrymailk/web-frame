@@ -1,18 +1,19 @@
-import Event from "./event.js";
+import Component from "./component.js"
 
-class About extends Event {
+class About extends Component {
   constructor() {
     super();
-    console.log("component created");
     this.renderResult = ``;
 
     this.init();
   }
 
   init() {
-    this.on("created", () => {
-      console.log("about created");
-    });
+
+  }
+
+  created() {
+    console.log("about created");
   }
 
   render() {

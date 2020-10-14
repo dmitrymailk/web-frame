@@ -1,13 +1,9 @@
-import Event from "./event.js";
+// import Event from "./event.js";
+import Component from "./component.js"
 
-class Home extends Event {
+class Home extends Component {
   constructor() {
     super();
-    console.log("component created");
-
-    this.hash = this.uuidv4();
-    this.renderResult = ``;
-
     this.init();
   }
 
@@ -16,12 +12,13 @@ class Home extends Event {
   }
 
   init() {
-    this.on("created", () => {
-      let button = this.$el("mySuperButton");
-      console.log("created home", button);
-      button.addEventListener("click", () => {
-        this.clickButton();
-      });
+    console.log('Home ', this);
+  }
+
+  created() {
+    let button = this.$el("mySuperButton");
+    button.addEventListener("click", () => {
+      this.clickButton();
     });
   }
 
@@ -33,11 +30,7 @@ class Home extends Event {
     `;
   }
 
-  $el(ref) {
-    return document.querySelector(
-      `*[data-ref='${ref}'][data-hash='${this.hash}']`
-    );
-  }
+
 }
 
 export default Home;
