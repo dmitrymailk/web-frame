@@ -1,15 +1,8 @@
-import Component from "./component.js"
+import Component from "./component.js";
 
 class About extends Component {
   constructor() {
     super();
-    this.renderResult = ``;
-
-    this.init();
-  }
-
-  init() {
-
   }
 
   created() {
@@ -17,7 +10,6 @@ class About extends Component {
   }
 
   render() {
-    console.log("render");
     this.renderResult = `
     <h1> About </h1> <br/>
     `;
