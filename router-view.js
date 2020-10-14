@@ -5,6 +5,8 @@ class RouterView extends Base {
     super();
     this.mountBlock = this.$el(routerViewElem);
     this.router = router;
+    this.currentComponent = {}
+
     console.log("router view created", this.mountBlock);
     this.init();
   }
@@ -25,8 +27,20 @@ class RouterView extends Base {
       component = component();
       component.render();
       this.mountBlock.innerHTML = component.renderResult;
+      this.currentComponent = component
+
       component.emit("created");
+
+      component.on("updated", (e) => {
+        this.updatePage(e);
+        e.created()
+      })
     }
+  }
+
+  updatePage(component) {
+    this.currentComponent = component;
+    this.mountBlock.innerHTML = component.renderResult;
   }
 }
 

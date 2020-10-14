@@ -4,15 +4,31 @@ class Component extends Event {
         super()
         this.hash = this.uuidv4();
         this.renderResult = ``;
+
+        this.state = {}
+
         this.initComponent()
     }
 
     initComponent() {
         this.on("created", () => this.created())
+        this.on("updated", this.updated.bind(this))
+    }
+
+    setState(key, data) {
+        console.log('set state', key, data, this.state, this.state[key]);
+        if (typeof this.state[key] !== "undefined") {
+            this.state[key] = data
+            this.emit("updated", this)
+        }
     }
 
     created() {
         console.log('created component');
+    }
+
+    updated() {
+        this.render()
     }
 
     $el(ref) {
